@@ -1,6 +1,6 @@
 <template>
 	<v-layout class="rounded rounded-md border h-100">
-		<v-app-bar title="Application bar">
+		<v-app-bar title="vuetify admin">
 			<div class="pr-2">我是内容</div>
 		</v-app-bar>
 
@@ -23,32 +23,26 @@
 
 <script lang="ts">
 //
+import { defineComponent, reactive } from 'vue'
+export default defineComponent({
+   setup(props, { emit, attrs }) {
+	  const state = reactive({
+		  isMeetingStart: false,
+		  activeTab: '1'
+	  })
 
-export default {
+   const startMeeting = () => {
+	   state.isMeetingStart = true
+   }
 
-	mounted() {
-		var fib = function (n) {
-			let prev = 0, next = 1, result = 0;
-			for (let i = 0; i <= n; i++) {
-				if (i === 0) {
-					result = 0
-					// return
-				}
-				if (i === 1 || i === 2) {
-					result = 1
-					// return
-				}
-				prev = next;
-				next = result;
-				result = prev + next;
-			}
-			console.log(result);
-
-			return result
-		};
-
-		fib(2)
-	}
-}
+   onMounted(() => {
+	   console.log('mounted')
+   })
+   return {
+	   state,
+	   startMeeting
+	   }
+   },
+})
 
 </script>
