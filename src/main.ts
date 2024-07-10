@@ -9,8 +9,7 @@ import { registerPlugins } from '@/plugins'
 
 // Components
 import App from './App.vue'
-
-import './main.css'
+import 'virtual:windi.css'
 
 // Composables
 import { createApp } from 'vue'

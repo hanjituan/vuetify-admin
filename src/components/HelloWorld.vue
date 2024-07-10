@@ -7,9 +7,8 @@
 				<img style="width: 120px;object-fit:contain"
 					src="https://cdn.vuetifyjs.com/docs/images/one/logos/vuetify-logo-dark.png" alt="">
 			</template>
-			<div class="pr-2 bg-black p-2 m-2">
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore assumenda ut a dolores consequatur,
-				reiciendis quae
+			<div class="border p-2 mr-4 hover:bg-slate-200 rounded-md cursor-pointer">
+				Lorem ipsum
 			</div>
 		</v-app-bar>
 
