@@ -1,8 +1,6 @@
 <template>
 	<v-layout class="rounded-md border h-100">
 		<v-app-bar>
-
-
 			<template v-slot:title>
 				<img style="width: 120px;object-fit:contain"
 					src="https://cdn.vuetifyjs.com/docs/images/one/logos/vuetify-logo-dark.png" alt="">
