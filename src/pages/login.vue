@@ -6,7 +6,7 @@
 				<div class="text-subtitle-1 text-medium-emphasis">Account</div>
 
 				<v-text-field density="compact" placeholder="Email address" prepend-inner-icon="mdi-email-outline"
-					variant="outlined" v-model="count">
+					variant="outlined" v-model="count" :rules="rules">
 				</v-text-field>
 
 				<div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
@@ -17,8 +17,9 @@
 				</div>
 
 				<v-text-field :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'" v-model="password"
-					:type="visible ? 'text' : 'password'" density="compact" placeholder="Enter your password"
-					prepend-inner-icon="mdi-lock-outline" variant="outlined" @click:append-inner="visible = !visible">
+					:rules="passwordRules" :type="visible ? 'text' : 'password'" density="compact"
+					placeholder="Enter your password" prepend-inner-icon="mdi-lock-outline" variant="outlined"
+					@click:append-inner="visible = !visible">
 				</v-text-field>
 
 				<v-card class="mb-12" color="surface-variant" variant="tonal">
@@ -32,6 +33,9 @@
 				<v-btn class="mb-8" color="blue" size="large" variant="tonal" block @click="submit"
 					:disabled="disabledLogin" :loading="loading">
 					Log In
+					<template v-slot:loader>
+						<v-progress-linear indeterminate></v-progress-linear>
+					</template>
 				</v-btn>
 
 				<v-card-text class="text-center">
@@ -77,6 +81,19 @@ const submit = () => {
 	}, 2000)
 }
 
+const rules = [
+	(value: string) => {
+		if (value) return true
+		return 'You must enter a emial adress.'
+	},
+]
+
+const passwordRules = [
+	(value: string) => {
+		if (value) return true
+		return 'You must enter password.'
+	},
+]
 
 </script>
 <style lang="scss" scoped>
