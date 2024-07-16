@@ -12,8 +12,8 @@
 							John Leider
 							<!-- <template v-slot:append>
 								<v-icon color="warning"></v-icon>
-							</template>
-		<template v-slot:prepend>
+							</template> -->
+							<!-- <template v-slot:prepend>
 								<v-icon color="success"></v-icon>
 							</template> -->
 						</v-btn>
@@ -36,38 +36,21 @@
 
 			<v-divider></v-divider>
 
-			<v-list density="compact" nav>
-				<v-list-item prepend-icon="mdi-home-city" title="Home" value="home"></v-list-item>
-				<v-list-item prepend-icon="mdi-account" title="My Account" value="account"></v-list-item>
-				<v-list-item prepend-icon="mdi-account-group-outline" title="Users" value="users"></v-list-item>
+			<v-list>
+				<v-list-item class="cursor-pointer" v-for="(item, i) in menuItems" :key="i" :value="item"
+					color="primary" variant="plain">
+					<template v-slot:prepend>
+						<v-icon :icon="item.icon"></v-icon>
+					</template>
+
+					<v-list-item-title v-text="item.text"></v-list-item-title>
+				</v-list-item>
 			</v-list>
 		</v-navigation-drawer>
 
 		<v-main class="d-flex align-center justify-center" style="min-height: 300px;">
 			<div class="text-center pa-4">
-				<v-dialog v-model="dialog" max-width="400" persistent>
-					<template v-slot:activator="{ props: activatorProps }">
-						<v-btn v-bind="activatorProps">
-							Open Dialog
-						</v-btn>
-					</template>
-
-					<v-card prepend-icon="mdi-map-marker"
-						text="Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
-						title="Use Google's location service?">
-						<template v-slot:actions>
-							<v-spacer></v-spacer>
-
-							<v-btn @click="dialog = false">
-								Disagree
-							</v-btn>
-
-							<v-btn @click="dialog = false">
-								Agree
-							</v-btn>
-						</template>
-					</v-card>
-				</v-dialog>
+				<router-view />
 			</div>
 		</v-main>
 	</v-layout>
@@ -77,8 +60,6 @@
 
 <script lang="ts" setup>
 
-
-const dialog = ref(false)
 const drawer = ref(true)
 const rail = ref(false)
 const items = ref([
@@ -88,9 +69,13 @@ const items = ref([
 	{ title: '退出登录' },
 ])
 
-const selectItem = (value) => {
+const selectItem = (value: any) => {
 	console.log(value);
 
 }
-
+const menuItems = [
+	{ text: 'Real-Time', icon: 'mdi-clock' },
+	{ text: 'Audience', icon: 'mdi-account' },
+	{ text: 'Conversions', icon: 'mdi-flag' },
+]
 </script>
