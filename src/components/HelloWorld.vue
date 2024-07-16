@@ -5,8 +5,25 @@
 				<img style="width: 120px;object-fit:contain"
 					src="https://cdn.vuetifyjs.com/docs/images/one/logos/vuetify-logo-dark.png" alt="">
 			</template>
-			<div class="border p-2 mr-4 hover:bg-slate-200 rounded-md cursor-pointer">
-				Lorem ipsum
+			<div class="mr-2 rounded">
+				<v-menu>
+					<template v-slot:activator="{ props }">
+						<v-btn color="primary" v-bind="props" variant="outlined" class="text-none">
+							John Leider
+							<!-- <template v-slot:append>
+								<v-icon color="warning"></v-icon>
+							</template>
+		<template v-slot:prepend>
+								<v-icon color="success"></v-icon>
+							</template> -->
+						</v-btn>
+					</template>
+					<v-list>
+						<v-list-item v-for="(item, index) in items" :key="index" :value="index">
+							<v-list-item-title @click="selectItem(item)">{{ item.title }}</v-list-item-title>
+						</v-list-item>
+					</v-list>
+				</v-menu>
 			</div>
 		</v-app-bar>
 
@@ -64,6 +81,16 @@
 const dialog = ref(false)
 const drawer = ref(true)
 const rail = ref(false)
+const items = ref([
+	{ title: '个人中心' },
+	{ title: '个人设置' },
+	{ title: '修改密码' },
+	{ title: '退出登录' },
+])
 
+const selectItem = (value) => {
+	console.log(value);
+
+}
 
 </script>

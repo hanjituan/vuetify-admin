@@ -59,7 +59,9 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const visible = ref(false)
 const snackbar = ref(false)
 const failedAttemp = ref(0)
@@ -78,6 +80,7 @@ const submit = () => {
 	setTimeout(() => {
 		loading.value = false
 		snackbar.value = true
+		router.push('/')
 	}, 2000)
 }
 
