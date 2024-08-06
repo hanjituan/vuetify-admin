@@ -38,7 +38,7 @@
 
 			<v-list>
 				<v-list-item class="cursor-pointer" v-for="(item, i) in menuItems" :key="i" :value="item"
-					color="primary" variant="plain">
+					color="primary" variant="plain" @click="selectItem(item)">
 					<template v-slot:prepend>
 						<v-icon :icon="item.icon"></v-icon>
 					</template>
@@ -59,6 +59,8 @@
 </template>
 
 <script lang="ts" setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const drawer = ref(true)
 const rail = ref(false)
@@ -71,10 +73,13 @@ const items = ref([
 
 const selectItem = (value: any) => {
 	console.log(value);
+	if (value.url) {
+		router.push(value.url)
+	}
 
 }
 const menuItems = [
-	{ text: 'Real-Time', icon: 'mdi-clock' },
+	{ text: 'Real-Time', icon: 'mdi-clock', url: 'real-time' },
 	{ text: 'Audience', icon: 'mdi-account' },
 	{ text: 'Conversions', icon: 'mdi-flag' },
 ]

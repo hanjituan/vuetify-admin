@@ -23,7 +23,6 @@
 				</template>
 			</v-card>
 		</v-dialog>
-		现场问题录入
 	</div>
 </template>
 
