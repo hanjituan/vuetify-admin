@@ -1,5 +1,6 @@
 <template>
 	<v-layout class="rounded-md border h-100">
+		<!-- app bar -->
 		<v-app-bar>
 			<template v-slot:title>
 				<img style="width: 120px;object-fit:contain"
@@ -10,12 +11,6 @@
 					<template v-slot:activator="{ props }">
 						<v-btn color="primary" v-bind="props" variant="outlined" class="text-none">
 							John Leider
-							<!-- <template v-slot:append>
-								<v-icon color="warning"></v-icon>
-							</template> -->
-							<!-- <template v-slot:prepend>
-								<v-icon color="success"></v-icon>
-							</template> -->
 						</v-btn>
 					</template>
 					<v-list>
@@ -27,27 +22,48 @@
 			</div>
 		</v-app-bar>
 
-		<v-navigation-drawer v-model="drawer" :rail="rail" permanent @click="rail = false">
-			<v-list-item prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg" title="John Leider" nav>
-				<template v-slot:append>
-					<v-btn icon="mdi-chevron-left" variant="text" @click.stop="rail = !rail"></v-btn>
-				</template>
-			</v-list-item>
+		<!-- left menu -->
+		<v-navigation-drawer v-model="drawer" :rail="rail" permanent @click="rail = false" app>
+			<v-list v-model:opened="open">
+				<!-- <v-list-item prepend-icon="mdi-home" title="首页"></v-list-item> -->
 
-			<v-divider></v-divider>
-
-			<v-list>
-				<v-list-item class="cursor-pointer" v-for="(item, i) in menuItems" :key="i" :value="item"
-					color="primary" variant="plain" @click="selectItem(item)">
+				<v-list-item v-for="(item, i) in menuItems" :key="i" :value="item" color="primary" rounded="shaped">
 					<template v-slot:prepend>
 						<v-icon :icon="item.icon"></v-icon>
 					</template>
 
 					<v-list-item-title v-text="item.text"></v-list-item-title>
 				</v-list-item>
+
+				<v-list-group value="Users">
+					<template v-slot:activator="{ props }">
+						<v-list-item v-bind="props" prepend-icon="mdi-account-circle" title="Users"></v-list-item>
+					</template>
+
+					<v-list-group value="Admin">
+						<template v-slot:activator="{ props }">
+							<v-list-item v-bind="props" title="Admin"></v-list-item>
+						</template>
+
+						<v-list-item v-for="([title, icon], i) in admins" :key="i" :prepend-icon="icon" :title="title"
+							:value="title">
+						</v-list-item>
+					</v-list-group>
+
+					<v-list-group value="Actions">
+						<template v-slot:activator="{ props }">
+							<v-list-item v-bind="props" title="Actions"></v-list-item>
+						</template>
+
+						<v-list-item v-for="([title, icon], i) in cruds" :key="i" :prepend-icon="icon" :title="title"
+							:value="title">
+						</v-list-item>
+					</v-list-group>
+				</v-list-group>
 			</v-list>
 		</v-navigation-drawer>
 
+		<!-- main content -->
 		<v-main class="flex align-center justify-center">
 			<div class="text-center p-4">
 				<router-view />
@@ -76,8 +92,20 @@ const selectItem = (value: any) => {
 	if (value.url) {
 		router.push(value.url)
 	}
-
 }
+
+const open = ref(['Users'])
+
+const admins = [
+	['Management', 'mdi-account-multiple-outline'],
+	['Settings', 'mdi-cog-outline'],
+]
+const cruds = [
+	['Create', 'mdi-plus-outline'],
+	['Read', 'mdi-file-outline'],
+	['Update', 'mdi-update'],
+	['Delete', 'mdi-delete'],
+]
 const menuItems = [
 	{ text: 'Real-Time', icon: 'mdi-clock', url: 'real-time' },
 	{ text: 'Audience', icon: 'mdi-account' },
