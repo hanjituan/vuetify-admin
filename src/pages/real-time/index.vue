@@ -1,6 +1,6 @@
 <template>
 	<div>
-		现场问题录入
+		real time
 	</div>
 </template>
 
