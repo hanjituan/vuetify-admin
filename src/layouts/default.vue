@@ -23,46 +23,7 @@
 		</v-app-bar>
 
 		<!-- left menu -->
-		<v-navigation-drawer v-model="drawer" :rail="rail" permanent @click="rail = false" app>
-			<v-list v-model:opened="open">
-				<!-- <v-list-item prepend-icon="mdi-home" title="首页"></v-list-item> -->
-
-				<v-list-item v-for="(item, i) in menuItems" :key="i" :value="item" color="primary" rounded="shaped"
-					@click="selectItem(item)">
-					<template v-slot:prepend>
-						<v-icon :icon="item.icon"></v-icon>
-					</template>
-
-					<v-list-item-title v-text="item.text"></v-list-item-title>
-				</v-list-item>
-
-				<v-list-group value="Users">
-					<template v-slot:activator="{ props }">
-						<v-list-item v-bind="props" prepend-icon="mdi-account-circle" title="Users"></v-list-item>
-					</template>
-
-					<v-list-group value="Admin">
-						<template v-slot:activator="{ props }">
-							<v-list-item v-bind="props" title="Admin"></v-list-item>
-						</template>
-
-						<v-list-item v-for="([title, icon], i) in admins" :key="i" :prepend-icon="icon" :title="title"
-							:value="title">
-						</v-list-item>
-					</v-list-group>
-
-					<v-list-group value="Actions">
-						<template v-slot:activator="{ props }">
-							<v-list-item v-bind="props" title="Actions"></v-list-item>
-						</template>
-
-						<v-list-item v-for="([title, icon], i) in cruds" :key="i" :prepend-icon="icon" :title="title"
-							:value="title">
-						</v-list-item>
-					</v-list-group>
-				</v-list-group>
-			</v-list>
-		</v-navigation-drawer>
+		<SideMenu @select-item="selectItem" />
 
 		<!-- main content -->
 		<v-main class="flex align-center justify-center">
@@ -77,10 +38,9 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
+import SideMenu from './side-menu.vue';
 const router = useRouter()
 
-const drawer = ref(true)
-const rail = ref(false)
 const items = ref([
 	{ title: '个人中心' },
 	{ title: '个人设置' },
@@ -90,26 +50,9 @@ const items = ref([
 
 const selectItem = (value: any) => {
 	console.log(value);
-	if (value.url) {
-		router.push(value.url)
+	if (value.path) {
+		router.push(value.path)
 	}
 }
 
-const open = ref(['Users'])
-
-const admins = [
-	['Management', 'mdi-account-multiple-outline'],
-	['Settings', 'mdi-cog-outline'],
-]
-const cruds = [
-	['Create', 'mdi-plus-outline'],
-	['Read', 'mdi-file-outline'],
-	['Update', 'mdi-update'],
-	['Delete', 'mdi-delete'],
-]
-const menuItems = [
-	{ text: 'dashboard', icon: 'mdi-clock', url: 'real-time' },
-	{ text: 'Audience', icon: 'mdi-account', url: 'audience' },
-	{ text: 'Conversions', icon: 'mdi-flag', url: 'conversions' },
-]
 </script>
