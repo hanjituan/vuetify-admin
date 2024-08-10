@@ -1,6 +1,6 @@
 <template>
 	<div>
-		audience
+		workbench
 	</div>
 </template>
 <script lang="ts" setup>

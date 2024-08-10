@@ -5,7 +5,6 @@ export interface Menu {
 	children?: Menu[];
 }
 
-
 export const Menu: Array<Menu> = [
 	{
 		name: 'Dashboard',
@@ -19,12 +18,12 @@ export const Menu: Array<Menu> = [
 			},
 			{
 				name: '监控台',
-				path: '/monitor',
+				path: '/dashboard/monitor',
 				icon: 'mdi-monitor',
 			},
 			{
 				name: '工作台',
-				path: '/workbench',
+				path: '/dashboard/workbench',
 				icon: 'mdi-network-outline',
 			},
 		],

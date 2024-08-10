@@ -1,6 +1,6 @@
 <template>
 	<div>
-		analysis page
+		monitor page
 	</div>
 </template>
 <script lang="ts" setup>
