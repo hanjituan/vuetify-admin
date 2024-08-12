@@ -3,9 +3,9 @@
 		<!-- app bar -->
 		<v-app-bar>
 			<template v-slot:title>
-				<img style="width: 120px;object-fit:contain"
-					src="https://cdn.vuetifyjs.com/docs/images/one/logos/vuetify-logo-dark.png" alt="">
+				<img class="w-[120px]" :src="logo" alt="">
 			</template>
+
 			<div class="mr-4 rounded flex items-center">
 				<v-switch class="mr-4" v-model="model" hide-details @change="toggleTheme"
 					:color="model ? '#fff' : '#000'" />
@@ -43,6 +43,14 @@ import SideMenu from './side-menu.vue';
 
 const router = useRouter()
 const theme = useTheme()
+
+
+const logo = computed(() => {
+	if (theme.global.current.value.dark) {
+		return 'https://cdn.vuetifyjs.com/docs/images/brand-kit/v-text-logo-dark.svg'
+	}
+	return 'https://cdn.vuetifyjs.com/docs/images/brand-kit/v-text-logo-light.svg'
+})
 
 const model = ref(false)
 const rail = ref(false)

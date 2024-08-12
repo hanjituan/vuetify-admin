@@ -27,7 +27,7 @@
 			</v-card-actions>
 		</v-card>
 
-		<v-card class="w-1/2 p-2" color="blue">
+		<v-card class="w-1/2 p-2" color="pink">
 			<v-sparkline :fill="fill" :gradient="selectedGradient" :line-width="lineWidth" :model-value="value1"
 				:padding="padding" :smooth="smooth" auto-draw></v-sparkline>
 

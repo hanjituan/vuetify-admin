@@ -6,9 +6,19 @@
 		</v-list>
 
 		<v-list v-model:opened="open">
+			<v-btn>
+				Start
+				<v-tooltip activator="parent" location="start" height="200">
+					<p>Start</p>
+					<p>Start</p>
+					<p>Start</p>
+					<p>Start</p>
+				</v-tooltip>
+			</v-btn>
+
 			<div v-for="item in Menu" :key="item.path">
 				<!-- 一级菜单 -->
-				<template v-if="!item.children">
+				<template v-if="!item.children && rail">
 					<v-list-item :value="item.path" color="primary" rounded="shaped" @click="selectItem(item)">
 						<template v-slot:prepend>
 							<v-icon :icon="item.icon"></v-icon>
@@ -18,7 +28,7 @@
 				</template>
 
 				<!-- 二级菜单 -->
-				<template v-else>
+				<template v-if="item.children && Array.isArray(item.children)">
 					<v-list-group :value="item.name">
 						<template v-slot:activator="{ props }">
 							<v-list-item v-bind="props" :prepend-icon="item.icon" :title="item.name">
@@ -51,6 +61,7 @@
 </template>
 
 <script lang="ts" setup>
+import { r } from 'node_modules/unplugin-vue-router/dist/options-ChnxZdan.mjs';
 import { Menu } from './menu';
 
 const rail = ref(false)
