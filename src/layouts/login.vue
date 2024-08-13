@@ -60,6 +60,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router';
+import message from '@/components/message.vue'
 
 const router = useRouter()
 const visible = ref(false)
@@ -80,7 +81,13 @@ const submit = () => {
 	setTimeout(() => {
 		loading.value = false
 		snackbar.value = true
-		router.push('/')
+
+		// TODO: 待封装, 一个 message 组件
+		// message.success('login success')
+
+		setTimeout(() => {
+			router.push('/dashboard/analysis')
+		}, 1000)
 	}, 2000)
 }
 

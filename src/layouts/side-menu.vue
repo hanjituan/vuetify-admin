@@ -1,20 +1,6 @@
 <template>
-	<v-navigation-drawer v-model="drawer" :rail="rail" permanent app>
-		<v-list>
-			<v-list-item prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
-				subtitle="sandra_a88@gmailcom" title="Sandra Adams"></v-list-item>
-		</v-list>
-
+	<v-navigation-drawer v-model="drawer" :rail="rail" permanent app expand-on-hover>
 		<v-list v-model:opened="open">
-			<v-btn>
-				Start
-				<v-tooltip activator="parent" location="start" height="200">
-					<p>Start</p>
-					<p>Start</p>
-					<p>Start</p>
-					<p>Start</p>
-				</v-tooltip>
-			</v-btn>
 
 			<div v-for="item in Menu" :key="item.path">
 				<!-- 一级菜单 -->
@@ -53,10 +39,19 @@
 			</div>
 		</v-list>
 
-		<div class="border-t absolute bottom-0 w-full flex items-center justify-center p-4 cursor-pointer
+		<template v-slot:append>
+			<div class="pa-2" @click="switchRail">
+				<v-btn block>
+					<span :class="`${!rail ? 'mdi mdi-arrow-expand-left' : 'mdi mdi-arrow-expand-right'}`"></span>
+
+				</v-btn>
+			</div>
+		</template>
+
+		<!-- <div class="border-t absolute bottom-0 w-full flex items-center justify-center p-4 cursor-pointer
 			:hovver:bg-gray-500" @click="switchRail">
 			<span :class="`${!rail ? 'mdi mdi-arrow-expand-left' : 'mdi mdi-arrow-expand-right'}`"></span>
-		</div>
+		</div> -->
 	</v-navigation-drawer>
 </template>
 

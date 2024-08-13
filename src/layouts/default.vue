@@ -11,9 +11,13 @@
 					:color="model ? '#fff' : '#000'" />
 				<v-menu>
 					<template v-slot:activator="{ props }">
-						<v-btn color="primary" v-bind="props" variant="outlined" class="text-none">
+						<!-- <v-btn color="primary" v-bind="props" variant="outlined" class="text-none">
 							John Leider
-						</v-btn>
+						</v-btn> -->
+						<v-list v-bind="props">
+							<v-list-item prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
+								subtitle="sandra_a88@gmailcom" title="Sandra Adams"></v-list-item>
+						</v-list>
 					</template>
 					<v-list>
 						<v-list-item v-for="(item, index) in items" :key="index" :value="index">
@@ -28,7 +32,8 @@
 		<SideMenu @select-item="selectItem" @switch-rail="switchRail" />
 
 		<!-- main content -->
-		<v-main class="p-4" :style="getStyle">
+		<v-main class="p-0" :style="getStyle">
+			<v-breadcrumbs class="" :items="['Dashboard', '分析页']"></v-breadcrumbs>
 			<router-view />
 		</v-main>
 	</v-layout>
@@ -43,7 +48,6 @@ import SideMenu from './side-menu.vue';
 
 const router = useRouter()
 const theme = useTheme()
-
 
 const logo = computed(() => {
 	if (theme.global.current.value.dark) {
