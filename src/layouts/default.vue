@@ -60,10 +60,10 @@ const model = ref(false)
 const rail = ref(false)
 
 const items = ref([
-	{ title: '个人中心' },
-	{ title: '个人设置' },
-	{ title: '修改密码' },
-	{ title: '退出登录' },
+	{ title: '个人中心', path: '' },
+	{ title: '个人设置', path: '' },
+	{ title: '修改密码', path: '' },
+	{ title: '退出登录', path: '/login' },
 ])
 
 const getStyle = computed(() => {
@@ -83,6 +83,8 @@ function toggleTheme() {
 }
 
 const selectItem = (value: any) => {
+	console.log(value);
+
 	if (value.path) {
 		router.push(value.path)
 	}

@@ -81,10 +81,8 @@ const submit = () => {
 	setTimeout(() => {
 		loading.value = false
 		snackbar.value = true
-
 		// TODO: 待封装, 一个 message 组件
 		// message.success('login success')
-
 		setTimeout(() => {
 			router.push('/dashboard/analysis')
 		}, 1000)
