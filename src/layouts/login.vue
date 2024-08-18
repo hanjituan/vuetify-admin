@@ -60,12 +60,12 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router';
-import message from '@/components/message.vue'
+// import message from '@/components/message.vue'
 
 const router = useRouter()
 const visible = ref(false)
 const snackbar = ref(false)
-const failedAttemp = ref(0)
+// const failedAttemp = ref(0)
 const count = ref('')
 const password = ref('')
 

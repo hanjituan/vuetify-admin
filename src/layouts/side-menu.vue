@@ -56,7 +56,6 @@
 </template>
 
 <script lang="ts" setup>
-import { r } from 'node_modules/unplugin-vue-router/dist/options-ChnxZdan.mjs';
 import { Menu } from './menu';
 
 const rail = ref(false)

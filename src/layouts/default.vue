@@ -32,8 +32,8 @@
 		<SideMenu @select-item="selectItem" @switch-rail="switchRail" />
 
 		<!-- main content -->
-		<v-main class="p-0" :style="getStyle">
-			<v-breadcrumbs class="" :items="['Dashboard', '分析页']"></v-breadcrumbs>
+		<v-main class="p-0 bg-[#f3f3f3]" :style="getStyle">
+			<v-breadcrumbs class="bg-white bread" :items="['Dashboard', '分析页']"></v-breadcrumbs>
 			<router-view />
 		</v-main>
 	</v-layout>
@@ -71,6 +71,9 @@ const getStyle = computed(() => {
 		width: rail.value ? 'calc(100% - 64px)' : 'calc(100% - 256px)',
 		marginLeft: rail.value ? '64px' : '256px',
 		marginTop: '64px',
+		paddingBottom: '64px',
+		overflow: 'auto',
+		height: 'calc(100vh - 65px)'
 	}
 })
 
@@ -91,3 +94,12 @@ const selectItem = (value: any) => {
 }
 
 </script>
+
+<style>
+.v-theme--dark {
+	.bread {
+		background-color: rgb(var(--v-theme-surface)) !important;
+		color: #fff !important;
+	}
+}
+</style>
