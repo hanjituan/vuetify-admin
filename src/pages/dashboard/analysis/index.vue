@@ -51,9 +51,8 @@
 					<template v-slot:prepend>
 						<!-- <v-icon color="primary" icon="mdi-account"></v-icon> -->
 						<v-tabs class="border" v-model="tab">
-							<v-tab value="one">Item One</v-tab>
-							<v-tab value="two">Item Two</v-tab>
-							<v-tab value="three">Item Three</v-tab>
+							<v-tab value="one">销售额</v-tab>
+							<v-tab value="two">访问量</v-tab>
 						</v-tabs>
 					</template>
 					<template v-slot:append>
