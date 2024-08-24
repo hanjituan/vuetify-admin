@@ -39,14 +39,14 @@
 			</div>
 		</v-list>
 
-		<template v-slot:append>
+		<!-- <template v-slot:append>
 			<div class="pa-2" @click="switchRail">
 				<v-btn block>
 					<span :class="`${!rail ? 'mdi mdi-arrow-expand-left' : 'mdi mdi-arrow-expand-right'}`"></span>
 
 				</v-btn>
 			</div>
-		</template>
+		</template> -->
 
 		<!-- <div class="border-t absolute bottom-0 w-full flex items-center justify-center p-4 cursor-pointer
 			:hovver:bg-gray-500" @click="switchRail">
@@ -57,8 +57,14 @@
 
 <script lang="ts" setup>
 import { Menu } from './menu';
+defineProps({
+	rail: {
+		type: Boolean,
+		default: ''
+	}
+})
 
-const rail = ref(false)
+// const rail = ref(false)
 const drawer = ref(true)
 const open = ref(['Users'])
 
@@ -68,10 +74,6 @@ const selectItem = (item: any) => {
 	emit('selectItem', item)
 }
 
-const switchRail = () => {
-	rail.value = !rail.value
-	emit('switchRail', rail.value)
-}
 
 </script>
 <style lang="less" scoped></style>

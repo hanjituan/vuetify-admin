@@ -1,10 +1,25 @@
 <template>
-	<v-layout class="rounded-md border h-100">
+	<v-layout class="overflow-hidden">
 		<!-- app bar -->
 		<v-app-bar>
 			<template v-slot:title>
-				<img class="w-[120px]" :src="logo" alt="">
+				<div class="flex items-center">
+					<img class="w-[120px]" :src="logo" alt="">
+
+					<div class="ml-30" @click="switchRail">
+						<v-btn class="border" color="primary-color">
+							<!-- <icon :class="`${!rail ? 'mdi mdi-arrow-expand-left' : 'mdi mdi-arrow-expand-right'}`">
+							</icon> -->
+							<!-- <span class="mdi mdi-menu-close"></span>
+							<span class="mdi mdi-menu-open"></span> -->
+							<span class="mdi mdi-menu"></span>
+
+
+						</v-btn>
+					</div>
+				</div>
 			</template>
+
 
 			<div class="mr-4 rounded flex items-center">
 				<v-switch class="mr-4" v-model="model" hide-details @change="toggleTheme"
@@ -29,7 +44,7 @@
 		</v-app-bar>
 
 		<!-- left menu -->
-		<SideMenu @select-item="selectItem" @switch-rail="switchRail" />
+		<SideMenu @select-item="selectItem" @switch-rail="switchRail" :rail="rail" />
 
 		<!-- main content -->
 		<v-main class="p-0 bg-[#f3f3f3]" :style="getStyle">
@@ -78,7 +93,7 @@ const getStyle = computed(() => {
 })
 
 const switchRail = (value: boolean) => {
-	rail.value = value;
+	rail.value = !rail.value;
 }
 
 function toggleTheme() {
